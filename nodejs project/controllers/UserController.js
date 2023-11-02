@@ -127,6 +127,25 @@ const updateUser = async (req, res) => {
         return res.status(500).send({ message: "Error updating user", error });
     }
 }
+
+//get user by Id
+const getUserById = async (req, res) => {
+    try {
+        const { id } = req.params
+        const user = await UserModel.findById(id)
+        if (user) {
+            return res.status(200).send({ message: "User get By Id", data: user })
+        }
+    }
+    catch (err) {
+        return res.status(200).send({ message: "problem getting User", data: user })
+
+        console.log(err)
+
+    }
+
+
+}
 // get All users
 const getAllUsers = async (req, res) => {
     try {
@@ -160,7 +179,7 @@ const deleteUser = async (req, res) => {
 
 
 
-module.exports = { createRegisterUser, loginUser, updateUser, getAllUsers, deleteUser }
+module.exports = { createRegisterUser, loginUser, updateUser, getAllUsers, deleteUser, getUserById }
 
 
 
